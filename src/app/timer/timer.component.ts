@@ -35,7 +35,13 @@ import { Component } from '@angular/core';
   `
 })
 export class TimerComponent {
+  _time;
+
   get time() {
-    return Date.now();
+    return this._time;
+  }
+
+  constructor() {
+    this._time = Date.now();
   }
 }
