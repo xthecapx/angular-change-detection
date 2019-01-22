@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-timer',
-  templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.scss']
+  template: `
+    <h3>Change detection is triggered at: <span [textContent]="time | date: 'hh:mm:ss:SSS'"></span></h3>
+    <button (click)="(0)">Trigger Change Detection</button>
+  `
 })
-export class TimerComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
+export class TimerComponent {
+  get time() {
+    return Date.now();
+  }
 }
