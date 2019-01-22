@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-parent',
-  templateUrl: './parent.component.html',
-  styleUrls: ['./parent.component.scss']
+  template: `
+    <div [textContent]="text"></div>
+    <app-child></app-child>
+  `
 })
-export class ParentComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit() {}
+export class ParentComponent {
+  text = 'Original text in parent component';
 }
