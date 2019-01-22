@@ -7,16 +7,12 @@ import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './parent/child/child.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TimerComponent,
-    ParentComponent,
-    ChildComponent
-  ],
-  imports: [
-    BrowserModule
-  ],
+  declarations: [AppComponent, TimerComponent, ParentComponent, ChildComponent],
+  imports: [BrowserModule],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
+
+// https://blog.angularindepth.com/a-gentle-introduction-into-change-detection-in-angular-33f9ffff6f10
+// https://blog.angularindepth.com/these-5-articles-will-make-you-an-angular-change-detection-expert-ed530d28930
