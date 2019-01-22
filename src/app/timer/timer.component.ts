@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 
 /**
  * Angular DOM vs Real DOM
@@ -41,13 +41,25 @@ export class TimerComponent {
     return this._time;
   }
 
-  constructor() {
+  constructor(private zone: NgZone) {
     this._time = Date.now();
 
     // All timing events, like setInterval, trigger change detection in Angular
     // * we need a way to run setInterval and not trigger change detection
-    setInterval(() => {
-      this._time = Date.now();
-    }, 1);
+
+    // Now we’re constantly updating the time, but we’re doing so asynchronously
+    // and outside of the Angular zone.
+    // Using NgZone to run some code outside of Angular to avoid triggering
+    // change detection is a common optimization technique.
+    zone.runOutsideAngular(() => {
+      setInterval(() => {
+        this._time = Date.now();
+      }, 1);
+    });
   }
 }
+
+// If you want to debug go to core.js and search for "function checkAndUpdateView"
+// * view.component holds the current value
+// * view.nodes holds the displaying nodes
+// * view.oldValues holds the values to be compared
