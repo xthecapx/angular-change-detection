@@ -43,5 +43,11 @@ export class TimerComponent {
 
   constructor() {
     this._time = Date.now();
+
+    // All timing events, like setInterval, trigger change detection in Angular
+    // * we need a way to run setInterval and not trigger change detection
+    setInterval(() => {
+      this._time = Date.now();
+    }, 1);
   }
 }
